@@ -1,0 +1,425 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>EntisTimeline Integration Documentation</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:400,700&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            font-family: Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: justify;
+            font-size: 11pt;
+            line-height: 160%;
+        }
+
+        pre {
+            padding: 5px;
+            border: 1px solid #ccc;
+            background-color: #eee;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 9pt;
+            line-height: 110%;
+        }
+
+        .code {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 10pt;
+            letter-spacing: -0.5pt;
+            background-color: #eee;
+            display: inline-block;
+            padding: 0 2pt;
+        }
+
+        .note {
+            padding: 5px;
+            border: 1px solid #ccc;
+            background-color: #eef9ff;
+            font-size: 10pt;
+        }
+
+        .demoLink {
+            display: inline-block;
+            border: 2px solid #acdc98;
+            background-color: #b3ef9a;
+            padding: 0 5pt;
+            text-decoration: none;
+            border-radius: 5pt;
+            color: black;
+            font-weight: bold;
+        }
+
+        a {
+            color: #31b4d8;
+        }
+    </style>
+</head>
+<body>
+    <h1>EntisTimeline Integration Guide</h1>
+    This page is intented for web page developers which want to integrate the EntisTimeline into their pages. In case you're not a web developer
+    but still want to be able to create and show timelines to your audience, we recommend using the <a href="https://timeline.entis-design.com/editor">EntisTimeline editor</a> which can do just that.
+    <h1>Contents</h1>
+    <ul>
+        <li><a href="#quick-start-guide">Quick Start Guide</a></li>
+        <li><a href="#configuration">Configuration</a></li>
+        <ul>
+            <li><a href="#general-information">General Information</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li><a href="#themes">Themes</a></li>
+        </ul>
+        <li><a href="#license">License</a></li>
+        <li><a href="#changelog">Changelog</a></li>
+    </ul>
+    <a name="quick-start-guide"></a><h1>Quick Start Guide</h1>
+    First of all, you need the timeline configuration. The simplest configuration is shown below, detailed configuration options are explained in the following section. It's recommended to save it into a separate JSON file.
+    <pre>
+{
+  "Title": "Hello World",
+  "Events": [
+    {
+      "Id": "E1",
+      "Title": "First Event!",
+      "Occurences": [
+        {
+          "Year": 1981
+        }
+      ]
+    },
+    {
+      "Id": "E2",
+      "Title": "Second Event!",
+      "Occurences": [
+        {
+          "Year": 1982
+        }
+      ]
+    }
+  ]
+}
+</pre>
+    <p class="note">
+        Alternatively, the timeline configuration can be created using the <a href="https://timeline.entis-design.com/editor">EntisTimeline editor</a> which can provide you with the
+        configuration JSON file or it can provide also a hosting for this file thus giving you just the JSON file url.
+    </p>
+    Then you need to include a couple of lines into your HTML page. First, load the EntisTimeline library using the <span class="code">require.js</span> loader as shown below. You may place this line into the <span class="code">head</span> section or just before the end of the <span class="code">body</span> section.
+    Please download the latest library files from the <a href="https://timeline.entis-design.com">EntisTimeline website</a> and place them so they are reachable by the web browser.
+    <pre>
+&lt;script data-main="/Scripts/entistimeline_starter.js" src="/Scripts/require.js"&gt;&lt;/script&gt;
+</pre>
+    Now we need to tell the library which timeline it should load and where it should be shown. Add a configuration script into your page.
+    <pre>
+&lt;script&gt;
+    var require = {
+        config: {
+            'entistimeline_starter': {
+                timelines: [
+                    {
+                        timelineUrl: 'demo_helloworld.json',
+                    }
+                ]
+            }
+        }
+    };
+&lt;/script&gt;
+</pre>
+    The complete HTML page which loads the EntisTimeline library and shows a timeline stored in the <span class="code">demo_helloworld.json</span> file will look like:
+    <a href="demo_helloworld.html" class="demoLink" target="_blank">Show me demo!</a>
+    <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;script&gt;
+        var require = {
+            config: {
+                'entistimeline_starter': {
+                    timelines: [
+                        {
+                            timelineUrl: '/Assets/demo_helloworld.json',
+                        }
+                    ]
+                }
+            }
+        };
+    &lt;/script&gt;
+    &lt;script data-main="/Scripts/entistimeline_starter.js" src="/Scripts/require.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+    <p class="note">
+        Please note, that the JSON configuration file is loaded asynchronously using an <a href="https://en.wikipedia.org/wiki/Ajax_(programming)">AJAX request</a>, so you need to make sure your web server is able to serve it. If the JSON file is on a different domain, <a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">CORS</a> restrictions might apply. If your page is served using a <a href="https://en.wikipedia.org/wiki/HTTPS">HTTPS protocol</a>, also the JSON file should be loaded using HTTPS.
+    </p>
+    There are some more things the timeline starter can do for you. You may initialize multiple timelines at once, you may embed the timeline into some particular DOM element or you may override the default timeline theme so it nicely fits to the design of your page.
+    <a href="demo_multiembed.html" class="demoLink" target="_blank">Show me demo!</a>
+
+    <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;title&gt;Velvet Revolution Sample&lt;/title&gt;
+    &lt;script&gt;
+        var require = {
+            config: {
+                'entistimeline_starter': {
+                    timelines: [
+                        {
+                            timelineUrl: '/Assets/demo_velvetrevolution.json',
+                            panelId: 'timelinePane1',
+                            customTheme: {
+                                DefaultBackgroundColor: "transparent"
+                            }
+                        },
+                        {
+                            timelineUrl: '/Assets/demo_computers.json',
+                            panelId: 'timelinePane2'
+                        }
+                    ]
+                }
+            }
+        };
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body style="background-color: #808080"&gt;
+    &lt;h1&gt;First Header&lt;/h1&gt;
+    &lt;div id="timelinePane1"&gt;&lt;/div&gt;
+    &lt;h1&gt;Second Header&lt;/h1&gt;
+    &lt;div id="timelinePane2"&gt;&lt;/div&gt;
+    &lt;h2&gt;Sample footer&lt;/h2&gt;
+    &lt;script data-main="/Scripts/entistimeline_starter.js" src="/Scripts/require.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+    You may also specify the timeline configuration inline, without loading it from an external JSON file.
+    <a href="demo_inline.html" class="demoLink" target="_blank">Show me demo!</a>
+    <pre>
+        &lt;script&gt;
+            var require = {
+                config: {
+                    'entistimeline_starter': {
+                        timelines: [
+                            {
+                                timelineSpec: {
+                                    "Title": "Hello World",
+                                    "Events": [
+                                        {
+                                            "Id": "E1",
+                                            "Title": "First Event!",
+                                            "Occurences": [
+                                                {
+                                                    "Year": 1981
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "Id": "E2",
+                                            "Title": "Second Event!",
+                                            "Occurences": [
+                                                {
+                                                    "Year": 1982
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                }
+            };
+        &lt;/script&gt;
+</pre>
+    <a name="configuration"></a>
+    <h1>Configuration</h1>
+    <a name="general-information"></a>
+    <h2>General Information</h2>
+    The configuration file consists of following fields:
+    <ul>
+        <li><span class="code">Title</span> - (mandatory) title of the timeline</li>
+        <li><span class="code">Subtitle</span> - (optional) longer text shown in the header of the timeline</li>
+        <li><span class="code">DataSource</span> - (optional) text describing the origin of the data in the timeline, shown in the footer of the page</li>
+        <li><span class="code">DataSourceLink</span> - (optional) hyperlink to the source data, user is navigated to this link when clicking the datasource information shown in the footer of the page</li>
+        <li><span class="code">Image</span> - (optional) main image of the timeline. Shown in the background of the header. If specified, also the width and height fields should be included.</li>
+        <li><span class="code">Links</span> - (optional) hyperlinks providing additional information to the user. Shown in the header of the timeline</li>
+        <li><span class="code">Categories</span> - (optional) array of event categories. See details in a separate section below</li>
+        <li><span class="code">Events</span> - (mandatory) array of timeline events. See details in a separate section below</li>
+        <li><span class="code">CustomTheme</span> - (optional) display style customizations. See details in a separate section below</li>
+    </ul>
+    <pre>
+{
+  "Title": "Velvet revolution",
+  "Subtitle": "The Velvet Revolution was a non-violent transition ...",
+  "DataSource": "Source: Wikipedia, 2019-08-30, CC BY-SA",
+  "DataSourceLink": "https://en.wikipedia.org/wiki/Velvet_Revolution",
+  "Image": {
+    "Url": "/Assets/demo_november17_bg.jpg",
+    "Width": 2362,
+    "Height": 1575
+  },
+  "CustomTheme": ...
+  "Links": [
+    {
+      "Text": "Read more on Wikipedia",
+      "Url": "https://en.wikipedia.org/wiki/Velvet_Revolution"
+    },
+  "Events": [
+      ...
+    ]
+    ...
+  ],
+   ...
+</pre>
+    <a name="events"></a>
+    <h2>Events</h2>
+    Events are the most important parts of the timeline. Events consists of:
+    <ul>
+        <li><span class="code">Id</span> - (mandatory) unique text Id</li>
+        <li><span class="code">Title</span> - (mandatory) event title</li>
+        <li><span class="code">Description</span> - (optional) event title</li>
+        <li><span class="code">Image</span> - (optional) image related to this event. If field <span class="code">Url</span> is specified, also <span class="code">Width</span> and <span class="code">Height</span> attributes are neccessary.</li>
+        <li><span class="code">Link</span> - (optional) hyperlink related to this event. If specified, field <span class="code">Url</span> is mandatory, but fields <span class="code">Target</span> and <span class="code">Tooltip</span> are optional.</li>
+        <li><span class="code">Occurences</span> - (mandatory) identification of event date & time. Might contain multiple items.
+            <ul>
+                <li><span class="code">CategoryId</span> - (optional) Id of related category</li>
+                <li><span class="code">Year</span> - (mandatory if <span class="code">Month</span> specified) specification of event - year</li>
+                <li><span class="code">Month</span> - (mandatory if <span class="code">Day</span> specified) specification of event - month (1-12)</li>
+                <li><span class="code">Day</span> - (mandatory if <span class="code">Hour</span> specified) specification of event - day (1-31)</li>
+                <li><span class="code">Hour</span> - (mandatory if <span class="code">Minute</span> specified) specification of event - hour (0-23)</li>
+                <li><span class="code">Minute</span> - (mandatory if <span class="code">Second</span> specified) specification of event - day (0-59)</li>
+                <li><span class="code">Second</span> - specification of event - second (0-59)</li>
+                <li>For long-lasting events you may also specify end timestamp:
+                    <ul>
+                        <li><span class="code">EndYear</span> - (mandatory if <span class="code">EndMonth</span> specified) specification of event end - year</li>
+                        <li><span class="code">EndMonth</span> - (mandatory if <span class="code">EndDay</span> specified) specification of event end - month (1-12)</li>
+                        <li><span class="code">EndDay</span> - (mandatory if <span class="code">EndHour</span> specified) specification of event end - day (1-31)</li>
+                        <li><span class="code">EndHour</span> - (mandatory if <span class="code">EndMinute</span> specified) specification of event - hour (0-23)</li>
+                        <li><span class="code">EndMinute</span> - (mandatory if <span class="code">EndSecond</span> specified) specification of event end - minute (0-59)</li>
+                        <li><span class="code">EndSecond</span> - specification of event end - second (0-59)</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        
+    </ul>
+    <p class="note">
+        Certain text fields (such as titles and descriptions) support simple formating tags, such as &lt;b&gt;<b>bold</b>&lt;/b&gt;, &lt;i&gt;<i>italic</i>&lt;/i&gt; and &lt;u&gt;<u>underlined</u>&lt;/u&gt;.
+    </p>
+    <pre>
+{
+      "Id": "19891117",
+      "Title": "The violent end of a Prague demonstration",
+      "Description": "&lt;i&gt;The Velvet Revolution&lt;/i&gt; started at an official event for ... ",
+      "Image": {
+        "Url": "/Assets/demo_november17.jpg",
+        "Width": 400,
+        "Height": 300
+      },
+      "Link": {
+        "Url": "https://en.wikipedia.org/",
+        "Target": "_blank",
+        "Tooltip": "more on Wikipedia"
+      },
+      "Occurences": [
+        {
+          "Year": 1989,
+          "Month": 11,
+          "Day": 17
+        }
+      ]
+    },
+</pre>
+    <a name="categories"></a>
+    <h2>Categories</h2>
+    Categories can be used to group related events. Each category contains own separate axis line and a distinct color. 
+    Each category consists of a unique text <span class="code">Id</span> (used for attaching the events) and text <span class="code">Title</span> (shown in the header of the timeline). If there are no categories specified,
+    a default virtual category (name-less) is created and all events are attached into it. Events are attached to categories using their occurences, therefore an event which occurs multiple times might appear in different categories if you wish.
+    <a href="entistimeline.html?url=demo_computers" class="demoLink" target="_blank">Show me demo!</a>
+    <pre>
+{
+  "Title": "...",
+  "Categories": [
+    {
+      "Id": "C1",
+      "Title": "First Category"
+    },
+    {
+      "Id": "C2",
+      "Title": "Second Category"
+    }
+  ],
+  "Events": [
+    {
+      "Id": "E1",
+      "Title": "First Event",
+      "Occurences": [
+        {
+          "CategoryId": "C1",
+          "Year": 1968
+        },
+        {
+          "CategoryId": "C2",
+          "Year": 1970
+        }
+      ]
+    },
+    ...
+</pre>
+    <a name="themes"></a>
+    <h2>Themes</h2>
+    Following options can be specified inside the <span class="code">customTheme</span> option of the loader or inside the <span class="code">CustomTheme</span> field of the timeline JSON file:
+    <ul>
+        <li><span class="code">EventBgColor</span> - specifies background color for the event title&description boxes. May also be <span class="code">transparent</span>.</li>
+        <li><span class="code">DefaultBackgroundColor</span> - background color for the timeline area. May also be <span class="code">transparent</span>.</li>
+        <li><span class="code">HeaderLinkColor</span> - color for hyperlinks shown in the title section</li>
+        <li><span class="code">EventTitleLineColor</span> - color of line that is shown below the event titles</li>
+        <li><span class="code">DefaultEventLineColor</span> - color of line that connects timeline axis with event</li>
+        <li><span class="code">DefaultEventPointColor</span> - color of circle that represents event on the timeline axis</li>
+        <li><span class="code">DefaultFont</span> - font family to be used. If you would like to use a Google Font, please specificy it's name also in the <span class="code">GoogleFonts</span> option</li>
+        <li><span class="code">DefaultFontColor</span> - font color to be used for main text</li>
+        <li><span class="code">DefaultNoteFontColor</span> - font color to be used for secondary text (as event dates, etc.)</li>
+        <li><span class="code">DefaultFontInverseColor</span> - inverse font color (used for example in category titles)</li>
+        <li><span class="code">CategoryColors</span> - colors that are assigned to categories (and their lines). If there are more categories than specified options, the colors will repeat.</li>
+        <li><span class="code">GoogleFonts</span> - array of Google Font names that should be preloaded</li>
+        <li><span class="code">DefaultMinFontSize</span> - minimum font size</li>
+        <li><span class="code">DefaultMaxFontSize</span> - maximum font size</li>
+        <li><span class="code">EmptySpaceThreshold</span> - the minimal length of whitespace between events which is cut down. Specify 0 in order to disable this feature.</li>
+        <li><span class="code">CutPlaceholderBorder</span> - when timeline is cut due to being empty for too long, an circular placeholder is included. This option specifies the border of the placeholder.</li>
+        <li><span class="code">TitleImageOpacity</span> - transparency of the image being used as the timeline main/background image.</li>
+    </ul>
+    <p class="note">
+        Colors can be specified using their names, hex code or rgba expression. Font sizes are being interpolated between the minimum and maximum size.
+    </p>
+    <pre>
+"CustomTheme": {
+    "EventBgColor": "rgba(0, 0, 0, 0.3)",
+    "DefaultFont": "Oswald",
+    "CategoryColors": [ "#5555ff" ],
+    "EventTitleLineColor": "#ff5555",
+    "DefaultFontColor": "#fff",
+    "GoogleFonts": ["Oswald"],
+    "DefaultFontInverseColor": "#555",
+    "DefaultNoteFontColor": "#555",
+    "DefaultBackgroundColor": "#000",
+    "DefaultEventLineColor": "#aaa",
+    "DefaultEventPointColor": "#000",
+    "DefaultMinFontSize": "10",
+    "DefaultMaxFontSize": "80",
+    "HeaderLinkColor": "#ff5555",
+    "DefaultImageRadius": 0,
+    "EmptySpaceThreshold": 700,
+    "CutPlaceholderBorder": "5",
+    "TitleImageOpacity": "0.3"
+  }
+</pre>
+    <a name="license"></a>
+    <h1>License</h1>
+    The EntisTimeline library is licensed under the <a href="https://en.wikipedia.org/wiki/MIT_License">MIT license</a>.
+    <a name="changelog"></a>
+    <h1>Changelog</h1>
+    <p>v1.0 - 08.11.2019 - Initial release</p>
+</body>
+</html>

@@ -1,0 +1,183 @@
+﻿{
+  "Title": "Velvet revolution",
+  "Subtitle": "The Velvet Revolution was a non-violent transition of power in what was then Czechoslovakia, occurring from 17 November to 29 December 1989. Popular demonstrations against the one-party government of the Communist Party of Czechoslovakia included students and older dissidents. The result was the end of 41 years of one-party rule in Czechoslovakia, and the subsequent dismantling of the command economy and conversion to a parliamentary republic.",
+  "DataSource": "Source: Wikipedia, 2019-08-30, CC BY-SA",
+  "DataSourceLink": "https://en.wikipedia.org/wiki/Velvet_Revolution",
+  "Image": {
+    "Url": "https://timeline.entis-design.com/demo/demo_november17_bg.jpg",
+    "Width": 2362,
+    "Height": 1575
+  },
+  "CustomTheme": {
+    "EventBgColor": "rgba(0, 0, 0, 0.3)",
+    "CategoryColors": [ "#5555ff" ],
+    "EventTitleLineColor": "#ff5555",
+    "DefaultFontColor": "#fff",
+    "DefaultNoteFontColor": "#555",
+    "DefaultBackgroundColor": "#000",
+    "DefaultEventLineColor": "#aaa",
+    "DefaultEventPointColor": "#000",
+    "DefaultMinFontSize": "10",
+    "DefaultMaxFontSize": "80",
+    "HeaderLinkColor": "#ff5555",
+    "DefaultImageRadius": "0",
+    "TitleImageOpacity": "0.3"
+  },
+  "Links": [
+    {
+      "Text": "Read more on Wikipedia",
+      "Url": "https://en.wikipedia.org/wiki/Velvet_Revolution"
+    },
+    {
+      "Text": "Detailed timeline / CZECH",
+      "Url": "https://cs.wikipedia.org/wiki/Sametov%C3%A1_revoluce"
+    }
+  ],
+  "Events": [
+    {
+      "Id": "19891116",
+      "Title": "Peaceful demonstration in Bratislava",
+      "Description": "On the eve of <b>International Students Day</b>, Slovak high school and university students organised a peaceful demonstration in the centre of Bratislava. The Communist Party of Slovakia had expected trouble, and the mere fact that the demonstration was organised was viewed as a problem by the Party. Armed forces were put on alert before the demonstration. In the end, however, the students moved through the city peacefully and sent a delegation to the Slovak Ministry of Education to discuss their demands.",
+      "Occurences": [
+        {
+          "Year": 1989,
+          "Month": 11,
+          "Day": 16
+        }
+      ]
+    },
+    {
+      "Id": "19891117",
+      "Title": "The violent end of a Prague demonstration",
+      "Description": "The Velvet Revolution started at an official event for 50th anniversary of the closing of Czechoslovakian universities on November 17, 1939 by the Nazis in Prague. This event continued after its official end and was violently ended by state police on the street Národní třída. The atmosphere of fear and hopelessness gave birth to a <i>hoax about a dead student</i>. ",
+      "Image": {
+        "Url": "https://timeline.entis-design.com/demo/demo_november17.jpg",
+        "Width": 400,
+        "Height": 300
+      },
+      "Occurences": [
+        {
+          "Year": 1989,
+          "Month": 11,
+          "Day": 17
+        }
+      ]
+    },
+    {
+      "Id": "19891118",
+      "Title": "Strikes begin",
+      "Description": "At the initiative of students from the Academy of Performing Arts in Prague, the students in Prague went on strike. This strike was joined by university students throughout Czechoslovakia. Theatre employees and actors in Prague supported the strike. Instead of going on stage, actors read a proclamation by the students and artists to the audience, calling for a general strike on 27 November. Home-made posters and proclamations were posted. As all media (radio, TV, newspapers) were strictly controlled by the Communist Party, this was the only way to spread the message.",
+      "Occurences": [
+        {
+          "Year": 1989,
+          "Month": 11,
+          "Day": 18
+        }
+      ]
+    },
+    {
+      "Id": "19891119",
+      "Title": "Civic movements are being organized",
+      "Description": "Mass popular movement for reforms such as Slovak Public Against Violence and Czech Civic Forum were established. They called for the dismissal of top officials responsible for the violence, and an independent investigation of the incident and the release of all political prisoners.",
+
+      "Occurences": [
+        {
+          "Year": 1989,
+          "Month": 11,
+          "Day": 19
+        }
+      ]
+    },
+    {
+      "Id": "19891120",
+      "Title": "First mass demonstrations",
+      "Description": "The government, in an official statement, made no concessions. Civic Forum added a demand: the abolition of the 'ruling position' of the Communist Party from the Constitution. The first mass demonstration in Prague (100,000 people) and the first demonstrations in Bratislava occurred.",
+
+      "Occurences": [
+        {
+          "Year": 1989,
+          "Month": 11,
+          "Day": 20
+        }
+      ]
+    },
+    {
+      "Id": "19891121",
+      "Title": "Getting support",
+      "Description": "The first official meeting of the Civic Forum with the Prime Minister took place. The Prime Minister agreed to personally guarantee that no violence would be used against the people; however he would \"protect socialism, about which no discussion is possible\". An organised mass demonstrations recurred in Prague and Bratislava. Actors and students travelled to factories to gain support and asked the people to participate in the general strike planned for Monday, 27 November. ",
+
+      "Occurences": [
+        {
+          "Year": 1989,
+          "Month": 11,
+          "Day": 21
+        }
+      ]
+    },
+    {
+      "Id": "19891122",
+      "Title": "General strike announced",
+      "Description": "Civic Forum announced a two-hour general strike for Monday, 27 November. The first live reports from the demonstration in Wenceslas Square appeared on Federal Television. Employees of the Slovak section of the Federal Television required the leaders of the Federal Television to provide true information on the events in the country; otherwise they would initiate a strike of TV employees. Uncensored live reports from demonstrations in Bratislava began.",
+
+      "Occurences": [
+        {
+          "Year": 1989,
+          "Month": 11,
+          "Day": 22
+        }
+      ]
+    },
+    {
+      "Id": "19891127",
+      "Title": "General strike",
+      "Description": "A successful two-hour general strike led by the civic movements strengthened what were at first a set of moderate demands into cries for a new government. The strike took place throughout the country between 12:00 and 14:00, supported by a reported 75% of the population. The Ministry of Culture released anti-Communist literature for public checkouts in libraries, effectively ending decades of censorship.",
+
+      "Occurences": [
+        {
+          "Year": 1989,
+          "Month": 11,
+          "Day": 27
+        }
+      ]
+    },
+    {
+      "Id": "19891129",
+      "Title": "Constitution changes",
+      "Description": "The Federal Assembly deleted the provision in the constitution referring to the \"leading role\" of the Communist Party, officially ending Communist rule in Czechoslovakia.",
+
+      "Occurences": [
+        {
+          "Year": 1989,
+          "Month": 11,
+          "Day": 29
+        }
+      ]
+    },
+    {
+      "Id": "19891210",
+      "Title": "First non-completely communist government",
+      "Description": "President Gustáv Husák appointed the first government in 41 years that was not dominated by the Communist Party. He resigned shortly afterward.",
+
+      "Occurences": [
+        {
+          "Year": 1989,
+          "Month": 12,
+          "Day": 10
+        }
+      ]
+    },
+    {
+      "Id": "19891229",
+      "Title": "Václav Havel as President",
+      "Description": "The victory of the revolution was topped off by the election of rebel playwright and human rights activist Václav Havel as President of Czechoslovakia on 29 December 1989. Within weeks, Havel negotiated the removal of all Soviet troops from Czechoslovakia. As per the agreement, the Soviet/Russian troops departed within months. Free elections held in June 1990 legitimised this government and set the stage for addressing the remnants of the Communist party's power and the legacy of the Communist period.",
+
+      "Occurences": [
+        {
+          "Year": 1989,
+          "Month": 12,
+          "Day": 29
+        }
+      ]
+    }
+  ]
+}

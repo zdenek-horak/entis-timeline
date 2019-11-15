@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Velvet Revolution Sample</title>
+    <script>
+        // Please note, that due to browser restrictions, these demo files are loaded from server, not from your local file system.
+        var require = {
+            config: {
+                'entistimeline_starter': {
+                    timelines: [
+                        {
+                            timelineUrl: 'https://timeline.entis-design.com/demo/demo_velvetrevolution.json',
+                            panelId: 'timelinePane1',
+                            customTheme: {
+                                DefaultBackgroundColor: "transparent"
+                            }
+                        },
+                        {
+                            timelineUrl: 'https://timeline.entis-design.com/demo/demo_computers.json',
+                            panelId: 'timelinePane2'
+                        }
+                    ]
+                }
+            }
+        };
+    </script>
+</head>
+<body style="background-color: #808080">
+    <h1>First Header</h1>
+    <div id="timelinePane1"></div>
+    <h1>Second Header</h1>
+    <div id="timelinePane2"></div>
+    <h2>Sample footer</h2>
+    <script data-main="entistimeline_starter.js" src="require.js"></script>
+</body>
+</html>

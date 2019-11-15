@@ -1,0 +1,23 @@
+{
+  "Title": "Hello World",
+  "Events": [
+    {
+      "Id": "E1",
+      "Title": "First Event!",
+      "Occurences": [
+        {
+          "Year": 1981
+        }
+      ]
+    },
+    {
+      "Id": "E2",
+      "Title": "Second Event!",
+      "Occurences": [
+        {
+          "Year": 1982
+        }
+      ]
+    }
+  ]
+}
